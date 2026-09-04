@@ -17,13 +17,18 @@ def binary_search(key, nums):
         else:
             right = mid -1
     return -1
-    
+
+def single_search(nums, target):
+    if target in nums:
+        print("Found") 
+
 def main():
     nums = [11, 22, 33, 44, 55, 66, 77, 88, 99]    
     
     key = int(input("enter number to be searched : "))
     # index = linear_search(key, nums)
     index = binary_search(key, nums)
+    # single_search(nums, key)
     # print(f"index = {index}")
     if (index == -1):
         print(f"{key} is not present.")
