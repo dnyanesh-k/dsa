@@ -48,12 +48,51 @@ class SinglyLinkedList:
             new_node.next = trav.next
             trav.next = new_node
 
+    def del_first(self):
+        if self.head is None:
+            raise Exception("List is expty")
+        self.head = self.head.next
+    def del_last(self):
+        if self.head is None or self.head.next is None:
+            self.del_first()
+        else:
+            temp = None
+            trav = self.head
+            while trav.next is not None:
+                temp = trav
+                trav = trav.next
+            temp.next = None
+    def del_at_position(self, position):
+        if position < 1:
+            raise Exception("Invalid position")
+        if self.head is None or position == 1:
+            self.del_first()
+        else:
+            trav = self.head
+            for i in range(1, position - 1):
+                trav = trav.next
+                if trav is None:
+                    raise Exception("Invalid position")
+            temp = trav.next
+            if temp is None:
+                raise Exception("Invalid position")
+            trav.next = temp.next
+
+    def del_all(self):
+        while self.head is not None:
+            self.del_first()
+
+
 def main():
     list = SinglyLinkedList()
     list.add_first(10)
-    list.add_first(20)
+    list.add_at_position(20, 2)
     list.add_last(30)
     list.add_at_position(25,3)
+    list.display()
+    list.del_at_position(3)
+    list.display()
+    list.del_last()
     list.display()
 
 if __name__ == "__main__":
